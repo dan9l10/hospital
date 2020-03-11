@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include('connect.php');
 ?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<link rel="stylesheet" type="text/css" href="style/main.css">
 <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" type="text/css" href="../style/main.css">
     </head>
     <body>
-        <div id="container2">
-            <form action="check.php" method="POST"> 
-                <h1>registration</h1>
-                <p>Login</p>
+        <form action="check.php" method="POST" enctype="multipart/form-data"> 
+                <h1>Registration</h1>
+                <label>Login</label>
                 <input type="text" name="login" class="form-control" placeholder="Введите логин">
-                <p>Password</p>
-                <input type="password" name="password" class="form-contro" placeholder="Введите пароь">
-                <p>Name</p>
-                <input type="text" name="name" class="form-contro" placeholder="Введите name">
-                <p>Age</p>
-                <input type="text" name="age" class="form-contro" placeholder="Введите age">
-                <p>Email</p>
-                <input type="text" name="email" class="form-contro" placeholder="Введите email">
-                <br>
-                <input type="submit" name="OK" class="form-control" value="registration"><br>
-                <a href="../index.php">Login</a><br>
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Введите пароь">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Введите name">
+                <label>Age</label>
+                <input type="text" name="age" class="form-control" placeholder="Введите age">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Введите email">
+                <label>Image</label>
+                <input type="file" name="avatar">
+                <input type="submit" name="OK" class="form-control" value="Зарегестрироваться">
+                <a href="../index.php">Login</a>
+                <p class="mg">
+                    <?php
+                    if (isset($_SESSION['msg'])){
+                        echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                    }
+                    
+                    ?>
+                
             </form>
-        </div>
+        
     </body>
 </html>
 

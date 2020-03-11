@@ -1,11 +1,40 @@
-form{
-    width: 500px;
-    
-}
-.container{
-    display: flex;
-}
-h1{
-    color: red;
+*{
+    margin: 0;
+    padding: 0;
 }
 
+body{
+    font-family: Montserrat, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+input{
+    margin: 10px 0;
+    border: unset;
+    border-bottom: 2px solid #e3e3e3;
+    outline: none;
+}
+a{
+    margin: 0;
+    color:cadetblue;
+    text-decoration: none;
+}
+#text{
+    align-content: center;
+    
+}
+.mg{
+    margin: 10px 0 0 0;
+    font-weight: bold;
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
