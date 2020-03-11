@@ -14,7 +14,8 @@ if(empty($user)){
    // exit();
 }
  $_SESSION['usr'] = [
-     "name" => $user['name']
+     "name" => $user['name'],
+     "email" => $user['email']
  ];
 //print_r($user);
 //exit();

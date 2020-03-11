@@ -9,22 +9,27 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: url(../src/AutorizatePicture.jpg) ;
+    background-size: 100%;
 }
 form{
     display: flex;
     flex-direction: column;
     width: 400px;
+    
 }
 input{
     margin: 10px 0;
     border: unset;
     border-bottom: 2px solid #e3e3e3;
     outline: none;
+   
 }
 a{
     margin: 0;
     color:cadetblue;
     text-decoration: none;
+    text-align: center;
 }
 #text{
     align-content: center;
