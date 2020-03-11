@@ -28,7 +28,8 @@ include('connect.php');
                 <input type="email" name="email" class="form-control" placeholder="Введите email">
                 <label>Image</label>
                 <input type="file" name="avatar">
-                <input type="submit" name="OK" class="form-control" value="Зарегестрироваться">
+                <button type="submit" class="btn-reg">Register</button><br>
+                <!--<input type="submit" name="OK" class="form-control" value="Зарегестрироваться">-->
                 <a href="../index.php">Login</a>
                 <p class="mg">
                     <?php

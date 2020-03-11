@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+header{
+    margin:0 25px;
+    display: flex;
+    background: royalblue;
+   
+    justify-content: space-between;
+    align-items: center;
+    
+}
+a{
+    padding: 20px;
+    color: white;
+    text-decoration: none;
+    width: 20%;
+    text-align: center;
+    
+}
+a:hover{
+    background-color: aqua;
+ 
+}
+.photo{
+    margin:  5px;
+    float: left;
+}

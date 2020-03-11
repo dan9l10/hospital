@@ -19,7 +19,7 @@ if(mb_strlen($pass)<5){
 $path = 'img/' . time(). $_FILES['avatar']['name'];
 move_uploaded_file($_FILES['avatar']['tmp_name'],'../' . $path);
 $pass = md5($pass."gyewid143yfdhgwe13");
-$dbh->query("INSERT INTO `users`(`name`,`login`,`password`,`email`,`status`) VALUES ('$name','$login','$pass','$email','user')");
+$dbh->query("INSERT INTO `users`(`name`,`login`,`password`,`email`,`status`,`avatar`) VALUES ('$name','$login','$pass','$email','user','$path')");
 //$dbh->close();
 //header('Location: ../index.php');
 $_SESSION['msg']='Registration completed';

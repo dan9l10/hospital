@@ -11,11 +11,12 @@ $user = $result->fetch(PDO::FETCH_ASSOC);
 if(empty($user)){
     $_SESSION['msg']='User not found';
     header('Location: ../index.php');
-   // exit();
+    exit();
 }
  $_SESSION['usr'] = [
      "name" => $user['name'],
-     "email" => $user['email']
+     "email" => $user['email'],
+     "avatar" => $user['avatar']
  ];
 //print_r($user);
 //exit();

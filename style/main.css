@@ -10,7 +10,9 @@ body{
     justify-content: center;
     height: 100vh;
     background: url(../src/AutorizatePicture.jpg) ;
+    background-repeat: no-repeat;
     background-size: 100%;
+    background-attachment: fixed, fixed;
 }
 form{
     display: flex;
@@ -21,9 +23,9 @@ form{
 input{
     margin: 10px 0;
     border: unset;
-    border-bottom: 2px solid #e3e3e3;
+    border-bottom: 2px solid activecaption;
     outline: none;
-   
+   background: none;
 }
 a{
     margin: 0;
@@ -42,4 +44,10 @@ a{
 }
 h1{
     text-align: center;
+}
+.btn-reg{
+    padding: 2px;
+    border-radius: 1px;
+    background: none;
+    
 }
