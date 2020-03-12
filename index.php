@@ -5,6 +5,8 @@ if(isset($_SESSION['usr'])){
     header('Location: profile.php') ; 
 }
 include('php/connect.php');
+//$Data=$dbh->query("Select * from users;");
+//echo(gettype($Data));
 ?>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -47,3 +49,4 @@ and open the template in the editor.
         ?>
     </body>
 </html>
+!-- ggwp
