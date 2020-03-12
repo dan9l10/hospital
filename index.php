@@ -2,7 +2,7 @@
 <?php
 session_start();
 if(isset($_SESSION['usr'])){
-    header('Location: profile.php') ; 
+    header('Location: Patient.php') ; 
 }
 include('php/connect.php');
 //$Data=$dbh->query("Select * from users;");
