@@ -2,8 +2,12 @@
 <?php
 session_start();
 if(isset($_SESSION['usr'])){
-    header('Location: ../profile.php') ; 
+    header('Location: ../Patient.php') ; 
 
+}elseif (isset($_SESSION['admin'])) {
+    header('Location: ../Admin.php');
+}elseif(isset($_SESSION['doctor'])){
+    header('Location: ../Doctor.php');
 }
 include('connect.php');
 ?>

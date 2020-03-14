@@ -1,7 +1,8 @@
 <?php
 session_start();
-echo 'admindoctor';
-
+if(!isset($_SESSION['doctor'])){
+    header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
