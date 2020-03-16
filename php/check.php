@@ -20,13 +20,17 @@ if(mb_strlen($pass)<5){
     exit();
 }
 $sqlrequest="select * from `users` where `login`='$login'";
+$sqlrequest2="select * from `doctors` where `login`='$login'";
 $res=$dbh->prepare($sqlrequest);
 $res->execute();
 $res=$res->fetch(PDO::FETCH_ASSOC);;
-if(!empty($res)){
+$res1=$dbh->prepare($sqlrequest2);
+$res1->execute();
+$res1=$res1->fetch(PDO::FETCH_ASSOC);;
+if(!empty($res) or !empty($res1)){
     $_SESSION['msg']='Login is exist';
     header("Location: reg.php");
-    exit();
+    exit();    
 }
 $path = 'img/' . time(). $_FILES['avatar']['name'];
 move_uploaded_file($_FILES['avatar']['tmp_name'],'../' . $path);
