@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 18 2020 г., 00:01
+-- Время создания: Мар 17 2020 г., 16:32
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.4.3
 
@@ -26,67 +26,14 @@ DELIMITER $$
 --
 -- Процедуры
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateSchedule` (IN `InMonth` INT, IN `InYear` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateSchedule` (IN `Month` INT, IN `Year` INT)  NO SQL
 BEGIN
-	
-	DECLARE CountDoctor int;
-    DECLARE CountTime int;
+	DECLARE CountDoctors int;
     DECLARE CountDay int;
-    DECLARE NumDate int DEFAULT 1;
-    DECLARE NumTime int DEFAULT 1;
-    DECLARE NumDoctor int DEFAULT 1;
-    DECLARE iddoctors int;
-    DECLARE id_time time;
-
+    DECLARE CountTime int;
     DECLARE CurrentDate date;
-    DECLARE InDate date;
-    DECLARE cur_doctors CURSOR FOR SELECT id FROM doctors;
-    DECLARE cur_time CURSOR FOR SELECT idtime FROM timetable;
-   	DELETE FROM test;
-    SELECT COUNT(*) INTO CountTime FROM timetable ;
-    SELECT COUNT(id) INTO CountDoctor FROM doctors ;
-    
-     INSERT INTO test(test) VALUES (CountTime);
-    SET InDate = STR_TO_DATE(
-        CONCAT(InYear,',',InMonth,',','1'),
-        '%Y,%m,%d');
-	SET CurrentDate= NOW();
-    SET CountDay=DAY(LAST_DAY(InDate));
-	
-    INSERT INTO test(test) VALUES
-    (CONCAT(CountTime,'-Time-',
-            '-Doctors-',CountDoctor,
-            '-Day-',CountDay));
-    INSERT INTO test(test) VALUES ('---');
-    
-    
-	label_date:WHILE NumDate<=CountDay DO
-    	SET NumDoctor=1;
-        OPEN cur_doctors ;
-        label_doctor:WHILE NumDoctor<=CountDoctor DO
-        	OPEN cur_time ;
-            SET NumTime=1;
-            FETCH cur_doctors INTO iddoctors;
-            label_time:WHILE NumTime<=CountTime DO
-                FETCH cur_time INTO id_time;
-                INSERT IGNORE INTO schedules SET
-                	iddoctor = iddoctors,
-                    idpatient = NULL,
-                    thetime = id_time,
-                    thedate = InDate; 
-                SET NumTime=NumTime+1;
-            END WHILE label_time;
-            CLOSE cur_time;
-            SET NumDoctor=NumDoctor+1;
-        END WHILE label_doctor;
-     CLOSE cur_doctors;
-     SET NumDate=NumDate+1;
-     SET InDate=adddate(InDate,1);
-     END WHILE label_date;
-     
 
 
-	
 end$$
 
 DELIMITER ;
@@ -136,6 +83,7 @@ INSERT INTO `patient` (`id`, `FilePath`, `Plurography`) VALUES
 --
 
 CREATE TABLE `schedules` (
+  `id` int(11) NOT NULL,
   `iddoctor` int(11) DEFAULT NULL,
   `idpatient` int(11) DEFAULT NULL,
   `thetime` int(11) DEFAULT NULL,
@@ -143,26 +91,6 @@ CREATE TABLE `schedules` (
   `status` tinyint(1) DEFAULT NULL,
   `recored` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-
---
--- Структура таблицы `test`
---
-
-CREATE TABLE `test` (
-  `test` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `test`
---
-
-INSERT INTO `test` (`test`) VALUES
-('27'),
-('27-Time--Doctors-1-Day-31'),
-('---');
 
 -- --------------------------------------------------------
 
@@ -174,39 +102,6 @@ CREATE TABLE `timetable` (
   `idtime` int(11) NOT NULL,
   `thetime` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Дамп данных таблицы `timetable`
---
-
-INSERT INTO `timetable` (`idtime`, `thetime`) VALUES
-(1, '07:00:00'),
-(2, '07:30:00'),
-(3, '08:00:00'),
-(4, '08:30:00'),
-(5, '09:00:00'),
-(6, '09:30:00'),
-(7, '10:00:00'),
-(8, '10:30:00'),
-(9, '11:00:00'),
-(10, '11:30:00'),
-(11, '12:00:00'),
-(12, '12:30:00'),
-(13, '13:00:00'),
-(14, '13:30:00'),
-(15, '14:00:00'),
-(16, '14:30:00'),
-(17, '15:00:00'),
-(18, '15:30:00'),
-(19, '16:00:00'),
-(20, '16:30:00'),
-(21, '17:00:00'),
-(22, '17:30:00'),
-(23, '18:00:00'),
-(24, '18:30:00'),
-(25, '19:00:00'),
-(26, '19:30:00'),
-(27, '20:00:00');
 
 -- --------------------------------------------------------
 
@@ -257,7 +152,7 @@ ALTER TABLE `patient`
 -- Индексы таблицы `schedules`
 --
 ALTER TABLE `schedules`
-  ADD UNIQUE KEY `Uniq_DATA` (`iddoctor`,`thetime`,`thedate`) USING BTREE,
+  ADD PRIMARY KEY (`id`),
   ADD KEY `iddoctor` (`iddoctor`),
   ADD KEY `idpatient` (`idpatient`),
   ADD KEY `thetime` (`thetime`);
@@ -282,7 +177,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `idtime` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idtime` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
