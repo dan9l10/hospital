@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 18 2020 г., 00:01
+-- Время создания: Мар 18 2020 г., 13:50
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.4.3
 
@@ -26,9 +26,11 @@ DELIMITER $$
 --
 -- Процедуры
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateSchedule` (IN `InMonth` INT, IN `InYear` INT)  NO SQL
-BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateSchedule` (IN `InMonth` INT, IN `InYear` INT, OUT `Result` TEXT)  NO SQL
+Body_Procedure:BEGIN
 	
+    DECLARE BeforeCountRecords int DEFAULT 0 ;
+    DECLARE AfterCountRecords int DEFAULT 0;
 	DECLARE CountDoctor int;
     DECLARE CountTime int;
     DECLARE CountDay int;
@@ -37,27 +39,32 @@ BEGIN
     DECLARE NumDoctor int DEFAULT 1;
     DECLARE iddoctors int;
     DECLARE id_time time;
-
     DECLARE CurrentDate date;
     DECLARE InDate date;
     DECLARE cur_doctors CURSOR FOR SELECT id FROM doctors;
     DECLARE cur_time CURSOR FOR SELECT idtime FROM timetable;
-   	DELETE FROM test;
+    
+    IF((InMonth>12)OR(InMonth<1)) THEN
+       SET Result = 
+       'Не корректно введен месяц, парметр доложен быть 1-12';
+       LEAVE Body_Procedure;
+    end if;
+    
+    SELECT COUNT(*) INTO BeforeCountRecords FROM schedules; 
     SELECT COUNT(*) INTO CountTime FROM timetable ;
     SELECT COUNT(id) INTO CountDoctor FROM doctors ;
-    
-     INSERT INTO test(test) VALUES (CountTime);
     SET InDate = STR_TO_DATE(
         CONCAT(InYear,',',InMonth,',','1'),
         '%Y,%m,%d');
 	SET CurrentDate= NOW();
-    SET CountDay=DAY(LAST_DAY(InDate));
+    SET CountDay=DAY(LAST_DAY(InDate));    
 	
-    INSERT INTO test(test) VALUES
-    (CONCAT(CountTime,'-Time-',
-            '-Doctors-',CountDoctor,
-            '-Day-',CountDay));
-    INSERT INTO test(test) VALUES ('---');
+    if ( (DATEDIFF(CurrentDate,InDate))>=DAY(CurrentDate)) THEN
+        SET Result = 
+       'Не возможно построить график на месяц который уже прошел(';
+       LEAVE Body_Procedure;
+    end if;
+  
     
     
 	label_date:WHILE NumDate<=CountDay DO
@@ -84,9 +91,15 @@ BEGIN
      SET InDate=adddate(InDate,1);
      END WHILE label_date;
      
+     SELECT COUNT(*) INTO AfterCountRecords FROM schedules; 
+     SET Result = 
+     CONCAT('График на ',
+            MONTH(InDate),'-',
+            YEAR(InDate),
+            ' успешно обновлен, лобавленно ',
+           AfterCountRecords-BeforeCountRecords,
+            ' записи');
 
-
-	
 end$$
 
 DELIMITER ;
@@ -136,16 +149,15 @@ INSERT INTO `patient` (`id`, `FilePath`, `Plurography`) VALUES
 --
 
 CREATE TABLE `schedules` (
-  `iddoctor` int(11) DEFAULT NULL,
+  `iddoctor` int(11) NOT NULL,
   `idpatient` int(11) DEFAULT NULL,
-  `thetime` int(11) DEFAULT NULL,
-  `thedate` date DEFAULT NULL,
+  `thetime` int(11) NOT NULL,
+  `thedate` date NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `recored` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-
+-- --------------------------------------------------------
 
 --
 -- Структура таблицы `test`
