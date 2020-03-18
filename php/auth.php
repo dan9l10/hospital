@@ -6,10 +6,15 @@ $pass = filter_var(trim($_POST['password']),FILTER_SANITIZE_STRING);
 
 $pass = md5($pass."gyewid143yfdhgwe13");
 $result_user = $dbh-> query("select * from `users` where `login` = '$login' and `password`= '$pass'");
+if(is_bool($result_user))//Если вернулся fasle значит такого пользователя нет и  $result_user->fetch(PDO::FETCH_ASSOC); выдаст ошибку, поэтому проверка 
+{
+    $_SESSION['msg']='User not found';
+    header('Location: ../index.php');
+    exit();
+}
 $user = $result_user->fetch(PDO::FETCH_ASSOC);
 
-$result_doctor=$dbh->query("select * from `doctors` where `login` = '$login' and `password`= '$pass'");
-$doctor =  $result_doctor->fetch(PDO::FETCH_ASSOC);
+
 
 $sqlreq="select `status` from `users` where `login` = '$login'";
 $status=$dbh->query($sqlreq);
@@ -36,11 +41,11 @@ header('Location: ../Admin.php');
 header('Location: ../Patient.php');
 }elseif(!empty ($doctor)){
      $_SESSION['doctor'] = [
-     "first_name" => $doctor['name'],
-     "last_name" => $doctor['surname'],
-     "middle_name" => $doctor['middle_name'],
-     "email" => $doctor['email'],
-     //"avatar" => $doctor['avatar']
+        "first_name" => $user['first_name'],
+        "last_name" => $user['last_name'],
+        "middle_name" => $user['middle_name'],
+        "email" => $user['email'],
+        "avatar" => $user['avatar']
  ];
 header('Location: ../Doctor.php');
 }else{
