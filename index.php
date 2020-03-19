@@ -39,7 +39,6 @@ and open the template in the editor.
                         echo $_SESSION['msg'];
                     unset($_SESSION['msg']);
                     }
-                    
                     ?>
                 </p>
         </div>

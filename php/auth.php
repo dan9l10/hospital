@@ -14,7 +14,11 @@ if(is_bool($result_user))//Если вернулся fasle значит тако
 }
 $user = $result_user->fetch(PDO::FETCH_ASSOC);
 
-
+//proverka na doctora
+$id_u=$user['id'];
+$result_doc=$dbh->query("select * from doctors where `id`='$id_u';");
+$doc=$result_doc->fetch(PDO::FETCH_ASSOC);
+//
 
 $sqlreq="select `status` from `users` where `login` = '$login'";
 $status=$dbh->query($sqlreq);
@@ -30,17 +34,8 @@ if($status['0'] == "admin"){
  ];
 header('Location: ../Admin.php');
 }else{
-    if(!empty($user)){
-   $_SESSION['usr'] = [
-     "first_name" => $user['first_name'],
-     "last_name" => $user['last_name'],
-     "middle_name" => $user['middle_name'],
-     "email" => $user['email'],
-     "avatar" => $user['avatar']
- ];
-header('Location: ../Patient.php');
-}elseif(!empty ($doctor)){
-     $_SESSION['doctor'] = [
+    if(!empty($doc)){
+   $_SESSION['doctor'] = [
         "first_name" => $user['first_name'],
         "last_name" => $user['last_name'],
         "middle_name" => $user['middle_name'],
@@ -48,35 +43,21 @@ header('Location: ../Patient.php');
         "avatar" => $user['avatar']
  ];
 header('Location: ../Doctor.php');
+}elseif(!empty ($user)){
+$_SESSION['usr'] = [
+     "first_name" => $user['first_name'],
+     "last_name" => $user['last_name'],
+     "middle_name" => $user['middle_name'],
+     "email" => $user['email'],
+     "avatar" => $user['avatar']
+ ];
+header('Location: ../Patient.php');
 }else{
     $_SESSION['msg']='User not found';
     header('Location: ../index.php');
     exit();
 }
 }
-
-//elseif ($status['0'] == "user") {
-//    $_SESSION['usr'] = [
-//     "first_name" => $user['first_name'],
-//     "last_name" => $user['last_name'],
-//     "middle_name" => $user['middle_name'],
-//     "email" => $user['email'],
-//     "avatar" => $user['avatar']
-// ];
-//header('Location: ../Patient.php');
-//} else {
-//    $_SESSION['doctor'] = [
-//     "first_name" => $user['first_name'],
-//     "last_name" => $user['last_name'],
-//     "middle_name" => $user['middle_name'],
-//     "email" => $user['email'],
-//     "avatar" => $user['avatar']
-// ];
-//header('Location: ../Doctor.php');
-//}
-
-
- 
 ?>
 
 

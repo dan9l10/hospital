@@ -4,7 +4,7 @@ if(!isset($_SESSION['admin'])){
     header('Location: index.php');
 }
 include 'php/connect.php';
-$sql="select `middle_name`,`surname`,`name`,`id` from `doctors`";
+$sql="select * from `users` inner join `doctors` on (users.id=doctors.id)";
 $result=$dbh->prepare($sql);
 $result->execute();
 $result=$result->fetchAll();
@@ -21,7 +21,7 @@ $result=$result->fetchAll();
     <body>
         <header>
                 <a href="#">Home</a>
-                <a href="#">Doctors</a>
+                <a href="admin/reg_doctor.php">Doctors</a>
                 <a href="#">Records</a>
                 <a href="#">History</a>
                 <a href="php/exit.php">Exit</a>  
@@ -34,11 +34,18 @@ $result=$result->fetchAll();
             <select name="select">
             <option value="0">Choice</option>
             <?php foreach($result as $res): ?>
-            <option value="<?=$res['id'];?>"><?=$res['middle_name'] .' '.$res['surname'].' '.$res['name'];?></option>
+            <option value="<?=$res['id'];?>"><?=$res['first_name'] .' '.$res['middle_name'].' '.$res['last_name'];?></option>
             <?php endforeach; ?>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">Информация</button>
         </form>
+        
+            <?php
+            if(isset($_SESSION['inf'])){
+               
+            }
+            ?>
+            
         
     </body>
 </html>
