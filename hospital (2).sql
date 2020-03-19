@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 18 2020 г., 13:50
--- Версия сервера: 10.4.11-MariaDB
--- Версия PHP: 7.4.3
+-- Время создания: Мар 19 2020 г., 01:21
+-- Версия сервера: 10.1.38-MariaDB
+-- Версия PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -102,6 +102,14 @@ Body_Procedure:BEGIN
 
 end$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `c_doc` (IN `login_doc` TEXT, IN `spec` TEXT, IN `cab` TEXT)  BEGIN
+DECLARE uid INT;
+SET uid =0;
+SELECT id INTO uid FROM users WHERE users.login=login_doc;
+INSERT INTO doctors(id,Specialization,cabinet) VALUES (uid,spec,cab);
+
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -112,8 +120,8 @@ DELIMITER ;
 
 CREATE TABLE `doctors` (
   `id` int(11) DEFAULT NULL,
-  `Specialization` text DEFAULT NULL,
-  `cabinet` text DEFAULT NULL
+  `Specialization` text,
+  `cabinet` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -121,7 +129,9 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `Specialization`, `cabinet`) VALUES
-(31, 'ggwp', '33z');
+(31, 'ggwp', '33z'),
+(26, 'fdf', '32'),
+(35, 'lor', '33');
 
 -- --------------------------------------------------------
 
@@ -131,8 +141,8 @@ INSERT INTO `doctors` (`id`, `Specialization`, `cabinet`) VALUES
 
 CREATE TABLE `patient` (
   `id` int(11) DEFAULT NULL,
-  `FilePath` text DEFAULT NULL,
-  `Plurography` text DEFAULT NULL
+  `FilePath` text,
+  `Plurography` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -164,7 +174,7 @@ CREATE TABLE `schedules` (
 --
 
 CREATE TABLE `test` (
-  `test` text DEFAULT NULL
+  `test` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -230,13 +240,13 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `login` text COLLATE utf8_unicode_ci NOT NULL,
   `password` text COLLATE utf8_unicode_ci NOT NULL,
-  `first_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `middle_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` text COLLATE utf8_unicode_ci,
+  `middle_name` text COLLATE utf8_unicode_ci,
+  `last_name` text COLLATE utf8_unicode_ci,
   `DOB` date DEFAULT NULL,
   `email` text COLLATE utf8_unicode_ci NOT NULL,
-  `status` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `avatar` text COLLATE utf8_unicode_ci DEFAULT NULL
+  `status` text COLLATE utf8_unicode_ci,
+  `avatar` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -247,7 +257,8 @@ INSERT INTO `users` (`id`, `login`, `password`, `first_name`, `middle_name`, `la
 (26, 'antoha228', 'b245dcd110a49b3e7ab5b35ae977388e', 'Антон', 'Александрович', 'Сверидов', '2000-01-01', 'antoha228@gmail.com', 'user', 'img/1584041463'),
 (27, 'dan9l10', '729144f3edb69a6dc7dcea5746f96b9d', 'admin', 'adminovich', 'adminskiy', '1998-08-28', '434@gmail.com', 'admin', 'img/1584047794'),
 (29, 'dan9l101010', '729144f3edb69a6dc7dcea5746f96b9d', 'user', 'user', 'user', '2000-01-01', 'fgfdf@gmail.com', 'user', 'img/1584103595favicon.ico'),
-(31, 'doctor1', '123123123', 'doctor1', 'doctor1', 'doctor1', NULL, '', NULL, NULL);
+(31, 'doctor1', '123123123', 'doctor1', 'doctor1', 'doctor1', NULL, '', NULL, NULL),
+(35, 'doc1', '729144f3edb69a6dc7dcea5746f96b9d', 'dadad', 'adada', 'adad', '2000-01-01', 'gaga@gmai.com', 'user', '');
 
 --
 -- Индексы сохранённых таблиц
@@ -300,7 +311,7 @@ ALTER TABLE `timetable`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
