@@ -21,7 +21,7 @@ $result=$result->fetchAll();
     <body>
         <header>
                 <a href="#">Home</a>
-                <a href="admin/reg_doctor.php">Doctors</a>
+                <a href="admin/reg_doctor.php">Регистрация врачей</a>
                 <a href="#">Records</a>
                 <a href="#">History</a>
                 <a href="php/exit.php">Exit</a>  

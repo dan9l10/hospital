@@ -21,10 +21,10 @@ include 'php/connect.php';
     <body>
         <header>
             
-                <a href="#">Home</a>
-                <a href="#">Doctors</a>
-                <a href="#">Records</a>
-                <a href="#">History</a>
+                <a href="#">Домашняя</a>
+                <a href="#">Врачи</a>
+                <a href="#">Запись</a>
+                <a href="#">История</a>
                 <a href="php/exit.php">Exit</a>
             
             

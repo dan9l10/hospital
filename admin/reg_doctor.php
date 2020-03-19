@@ -2,7 +2,9 @@
 <?php
 session_start();
 include('../php/connect.php');
-
+if(!isset($_SESSION['admin'])){
+    header('Location: ../index.php');
+}
 ?>
 <html>
     <head>
@@ -49,15 +51,6 @@ include('../php/connect.php');
         
     </body>
 </html>
-<?php
 
-
-//$sqlinsert="INSERT INTO users (first_name,   last_name,   middle_name,   login ,   password,   email,    status,   avatar, DOB)
-//VALUES '$firstName', '$lastName', '$middleName', '$login', '$pass'   , '$email', 'user'  , '$path', '$age');";
-//$sqlinsert_doc="CALL c_doc('$login','$spec','$cab');";
-//$dbh->query($sqlinsert);
-
-
-?>
 
 

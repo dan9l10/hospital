@@ -13,14 +13,11 @@ if(!isset($_SESSION['doctor'])){
     </head>
     <body>
         <header>
-            
-                <a href="#">Home</a>
-                <a href="#">Doctors</a>
-                <a href="#">Records</a>
-                <a href="#">History</a>
-                <a href="php/exit.php">Exit</a>
-            
-            
+                <a href="#">Домашняя</a>
+                <a href="#">Записи</a>
+                <a href="#">История</a>
+                <a href="#">График работы</a>
+                <a href="php/exit.php">Exit</a>   
         </header>
       <img class="photo" src="<?= $_SESSION['doctor']['avatar']?>" alt="" width="300px" height="300px">
         <p><b><?= $_SESSION['doctor']["first_name"]?></b></p>
