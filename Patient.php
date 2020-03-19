@@ -22,7 +22,7 @@ include 'php/connect.php';
         <header>
             
                 <a href="#">Домашняя</a>
-                <a href="#">Врачи</a>
+                <a href="usr/showDoc.php">Врачи</a>
                 <a href="#">Запись</a>
                 <a href="#">История</a>
                 <a href="php/exit.php">Exit</a>
