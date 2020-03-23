@@ -45,6 +45,7 @@ header('Location: ../Admin.php');
 header('Location: ../Doctor.php');
 }elseif(!empty ($user)){
 $_SESSION['usr'] = [
+     "id" => $user['id'],
      "first_name" => $user['first_name'],
      "last_name" => $user['last_name'],
      "middle_name" => $user['middle_name'],

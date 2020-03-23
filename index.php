@@ -9,15 +9,7 @@ if(isset($_SESSION['usr'])){
     header('Location: Doctor.php') ;
 }
 include('php/connect.php');
-//$Data=$dbh->query("Select * from users;");
-//echo(gettype($Data));
 ?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -42,15 +34,6 @@ and open the template in the editor.
                     ?>
                 </p>
         </div>
-        <?php
-        //$sql = "SELECT * FROM doctors";
-        //foreach ($dbh->query($sql) as $row) {
-        // var_dump($row); echo "<br>";
-       // print "<br>$row[0] $row[1] $row[2] $row[3] $row[4] $row[2] ";
-       // }
-       //     echo 'hello';
-        //dfsdsdsddsdprivet
-        ?>
     </body>
 </html>
 

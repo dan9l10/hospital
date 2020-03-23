@@ -45,7 +45,6 @@ include('connect.php');
                         echo $_SESSION['msg'];
                     unset($_SESSION['msg']);
                     }
-                    
                     ?>
                 
             </form>

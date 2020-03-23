@@ -9,7 +9,7 @@
         <header>
                 <a href="../Patient.php">Домашняя</a>
                 <a href="#">Врачи</a>
-                <a href="#">Запись</a>
+                <a href="reg_to_doc.php">Запись</a>
                 <a href="#">История</a>
                 <a href="../php/exit.php">Exit</a>  
         </header>
