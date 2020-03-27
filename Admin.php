@@ -8,8 +8,6 @@ $sql="select * from `users` inner join `doctors` on (users.id=doctors.id)";
 $result=$dbh->prepare($sql);
 $result->execute();
 $result=$result->fetchAll();
-//print_r($result);
-//exit();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +15,7 @@ $result=$result->fetchAll();
         <meta charset="UTF-8">
         <title>Hospital</title>
         <link rel="stylesheet" type="text/css" href="style/profile.css" >
+        <script src="js/JavaScript.js"></script>
     </head>
     <body>
         <header>
@@ -31,21 +30,19 @@ $result=$result->fetchAll();
         <p><b><?= $_SESSION['admin']["last_name"]?></b></p>
         <p><b><?= $_SESSION['admin']["middle_name"]?></b></p>
         <form method="POST" action="php/gen_page.php" >
-            <select name="select">
-            <option value="0">Choice</option>
+            <select name="select1" id="select1" onchange="show()">
             <?php foreach($result as $res): ?>
-            <option value="<?=$res['id'];?>"><?=$res['first_name'] .' '.$res['middle_name'].' '.$res['last_name'];?></option>
+            <option value="<?=$res['Specialization'];?>"><?=$res['Specialization'];?></option>
             <?php endforeach; ?>
-        </select>
-        <button type="submit">Информация</button>
+            </select>
+            <select name="select" id="select" style="width: 300px;">
+            </select>
+            <button type="submit">Информация</button>
         </form>
-        
             <?php
             if(isset($_SESSION['inf'])){
                
             }
             ?>
-            
-        
     </body>
 </html>

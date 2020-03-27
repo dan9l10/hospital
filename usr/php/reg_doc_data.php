@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../../php/connect.php';
-$id_doc=$_POST['select1'];
+$id_doc=$_POST['select'];
 $id_user=$_SESSION['usr']['id'];
 $id_time=$_POST['timetable'];
 $date=$_POST['date'];

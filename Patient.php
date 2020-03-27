@@ -24,7 +24,7 @@ include 'php/connect.php';
                 <a href="#">Домашняя</a>
                 <a href="usr/showDoc.php">Врачи</a>
                 <a href="usr/reg_to_doc.php">Запись</a>
-                <a href="#">История</a>
+                <a href="usr/records.php">История</a>
                 <a href="php/exit.php">Exit</a>
             
             
