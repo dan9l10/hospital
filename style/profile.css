@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
 *{
     margin: 0;
     padding: 0;
-    
+  
+    font-family: 'Comfortaa', cursive;
 }
 header{
     margin:0 25px;
     display: flex;
-    background: royalblue;
-   
+    background: #a2a2a2;
+    
     justify-content: space-between;
     align-items: center;
     
@@ -24,7 +27,116 @@ a:hover{
     background-color: aqua;
  
 }
-.photo{
-    margin:  5px;
-    float: left;
+
+#info {
+    display: flex;
+    margin-left:  15%;
+    margin-top: 20px;
 }
+#name{
+    margin-left: 40px;
+    font-size: 40px;
+    margin-top: 15px;
+
+}
+#private_info{
+    margin-left: 15%;
+    margin-top: 10px;
+}
+.photo{
+    width: 170px;
+    height: 170px;
+}
+#line{
+    margin: 2px 25px;
+    
+}
+#line:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.table_blur {
+  background: #f5ffff;
+  border-collapse: collapse;
+  text-align: left;
+  margin-top: 15px;
+  width: 100%;
+}
+.table_blur th {
+  border-top: 1px solid #777777;	
+  border-bottom: 1px solid #777777; 
+  box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
+  background: linear-gradient(#9595b6, #5a567f);
+  color: white;
+  padding: 10px 15px;
+  position: relative;
+}
+.table_blur th:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 25%;
+  width: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255,255,255,.08));
+}
+.table_blur tr:nth-child(odd) {
+  background: #ebf3f9;
+}
+.table_blur th:first-child {
+  border-left: 1px solid #777777;	
+  border-bottom:  1px solid #777777;
+  box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
+}
+.table_blur th:last-child {
+  border-right: 1px solid #777777;
+  border-bottom:  1px solid #777777;
+  box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
+}
+.table_blur td {
+  border: 1px solid #e3eef7;
+  padding: 10px 15px;
+  position: relative;
+  transition: all 0.5s ease;
+}
+.table_blur tbody:hover td {
+  color: transparent;
+  text-shadow: 0 0 3px #a09f9d;
+}
+.table_blur tbody:hover tr:hover td {
+  color: #444444;
+  text-shadow: none;
+}
+
+select {  
+font-size: 16px; 
+font-weight: 700; 
+color: #444; 
+line-height: 1.3; 
+padding: .6em 1.4em .5em .8em; width: 100%; 
+max-width: 100%; 
+box-sizing: border-box; 
+margin: 0; 
+border: 1px solid #aaa;
+ box-shadow: 0 1px 0 1px rgba(0,0,0,.04); 
+border-radius: .5em;
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ appearance: none;
+ background-color: #fff; 
+width: 300px;
+} 
+
+#back_index{
+ margin: 0;
+ padding: 0;
+    color:  firebrick;
+    font-weight: bold;
+    font-size: 20px;
+}
+#back_index:hover{
+        background: none;
+}
+

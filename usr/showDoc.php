@@ -8,9 +8,8 @@
     <body>
         <header>
                 <a href="../Patient.php">Домашняя</a>
-                <a href="#">Врачи</a>
+                <a href="../usr/showDoc.php">Врачи</a>
                 <a href="reg_to_doc.php">Запись</a>
-                <a href="#">История</a>
                 <a href="../php/exit.php">Exit</a>  
         </header>
         <div id="cards">
@@ -21,6 +20,7 @@
             $result->execute();
             $result=$result->fetchAll();
             $default_ava_path='../src/default_ava.png';
+            
            foreach ($result as $res):
            ?>
         <div class="card" >

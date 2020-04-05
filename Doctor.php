@@ -13,19 +13,31 @@ if(!isset($_SESSION['doctor'])){
     </head>
     <body>
         <header>
-                <a href="#">Домашняя</a>
-                <a href="#">Записи</a>
-                <a href="#" >История</a>
+                <a href="Doctor.php">Домашняя</a>
                 <a href="#" onclick="javascript:getGrapfik()">График работы</a>
                 <a href="php/exit.php">Exit</a>   
         </header>
       
         <!-- Тело с данными -->
         <div id="body" align="middle " >
-        <img class="photo" src="<?= $_SESSION['doctor']['avatar']?>" alt="" width="300px" height="300px">
-        <p><b><?= $_SESSION['doctor']["first_name"]?></b></p>
-        <p><b><?= $_SESSION['doctor']["last_name"]?></b></p>
-        <p><b><?= $_SESSION['doctor']["middle_name"]?></b></p>
+        </div>
+        <div id="full_information">
+        <div id="info">
+            <?php if(!empty($_SESSION['doctor']['avatar'])):?>
+         <img class="photo" src="<?= $_SESSION['doctor']['avatar']?>" alt="">
+            <?php else:?>
+         <img class="photo" src="src/default_ava.png" alt="">
+         <?php endif; ?>
+         <span id="name"><b><?= $_SESSION['doctor']["first_name"]?> <?= $_SESSION['doctor']["last_name"]?> <?=$_SESSION['doctor']["middle_name"]?></b></span>
+         <p>Доктор</p>
+        </div>
+            <hr id="line"> 
+        <div id="private_info">
+            <p><b>Username: </b>  <?=$_SESSION['doctor']['login']?></p>
+            <p><b>Email: </b>  <?=$_SESSION['doctor']['email']?></p>
+            <p><b>Date Birth: </b>  <?=$_SESSION['doctor']['dob']?></p>
+            <p><b>Specialist: </b> <?= $_SESSION['doctor']['spec']?></p>
+        </div>
         </div>
 
     </body>
@@ -75,6 +87,8 @@ if(!isset($_SESSION['doctor'])){
     function dellBody()
     {
         var body=document.getElementById("body");
+        var head=document.getElementById("full_information");
         body.innerHTML = '';
+        head.innerHTML='';
     }
 </script>

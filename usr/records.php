@@ -24,7 +24,7 @@ $rec=$rec->fetchAll();
             <a href="showDoc.php">Врачи</a>
             <a href="reg_to_doc.php">Запись</a>
             <a href="#">История</a>
-            <a href="php/exit.php">Exit</a> 
+            <a href="../php/exit.php">Exit</a> 
         </header>
         <table border="1" class="table_blur">
             <tr><td><p>Date</p></td><td>Name</td><td>Time</td><td>Specialization</td><td>Cabinet</td></tr>

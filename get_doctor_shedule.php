@@ -24,7 +24,7 @@
     {
        
         echo("
-        <table border=\"1\"  align=\"middle\" style=\"margin:auto;; width:80%; \">
+        <table class=\"table_blur\" border=\"1\"  align=\"middle\" style=\"margin:auto;; width:80%; \">
             <tr>
                 <td align=\"center\"><strong>Время</strong></td>
                 <td align=\"center\"><strong>Пациент</strong></td>

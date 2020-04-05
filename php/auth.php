@@ -13,13 +13,10 @@ if(is_bool($result_user))//Если вернулся fasle значит тако
     exit();
 }
 $user = $result_user->fetch(PDO::FETCH_ASSOC);
-
 //proverka na doctora
 $id_u=$user['id'];
 $result_doc=$dbh->query("select * from doctors where `id`='$id_u';");
 $doc=$result_doc->fetch(PDO::FETCH_ASSOC);
-//
-
 $sqlreq="select `status` from `users` where `login` = '$login'";
 $status=$dbh->query($sqlreq);
 $status=$status->fetch();
@@ -41,7 +38,11 @@ header('Location: ../Admin.php');
         "last_name" => $user['last_name'],
         "middle_name" => $user['middle_name'],
         "email" => $user['email'],
-        "avatar" => $user['avatar']
+        "avatar" => $user['avatar'],
+        "spec"=>$doc['Specialization'],
+        "dob"=>$user['DOB'],
+       "login"=>$user['login']
+       
  ];
 header('Location: ../Doctor.php');
 }elseif(!empty ($user)){
@@ -51,7 +52,9 @@ $_SESSION['usr'] = [
      "last_name" => $user['last_name'],
      "middle_name" => $user['middle_name'],
      "email" => $user['email'],
-     "avatar" => $user['avatar']
+     "avatar" => $user['avatar'],
+    "dob"=>$user['DOB'],
+    "login"=>$user['login']   
  ];
 header('Location: ../Patient.php');
 }else{
