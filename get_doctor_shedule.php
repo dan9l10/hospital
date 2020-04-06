@@ -8,7 +8,7 @@
     $date=intval($_GET['date']);
     $Correctdate=mb_substr($date,0,4).'-'.mb_substr($date,4,2).'-'.mb_substr($date,6,2);
     $date= $Correctdate;
-    echo("<div style=\"margin:auto;width:80%\"><form onchange=\"javascript:getGrapfik(calendar.value)\">
+    echo("<div style=\"margin:auto;width:80%\"><form onchange=\"javascript:getDoctorGrafik(calendar.value)\">
             <span >Выбирите день </span> 
             <input id=\"calendar\" name=\"calendar\" type=\"date\" value=\"$date\" >
         </form></div>");
@@ -35,7 +35,7 @@
             if((strlen($row[0]))>0)
             {
                 echo("<td >
-                <button style=\"width:100%\">
+                <button style=\"width:100%\" onclick=\"openMedicalBook($row[idpatient])\">
                     $row[first_name] $row[middle_name] $row[last_name]
                     </button>
                 </td></tr>");
