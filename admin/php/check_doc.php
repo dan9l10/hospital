@@ -22,8 +22,15 @@ if(!empty($res)){
     header("Location: ../reg_doctor.php");
     exit();    
 }else{
-//$path = 'img/' . time(). $_FILES['avatar']['name'];
-move_uploaded_file($_FILES['avatar']['tmp_name'],'../' . $path);
+    if(isset($_FILES['avatar']['name']))
+    {
+        if(strlen($_FILES['avatar']['name'])>0)
+        {
+        $path = 'img/'.time().$_FILES['avatar']['name'] ;
+        move_uploaded_file($_FILES['avatar']['tmp_name'],'../../' . $path);
+        }
+    }
+
 $pass = md5($pass."gyewid143yfdhgwe13");
 $dbh->query("INSERT INTO users (first_name,   last_name,   middle_name,   login ,   password,   email,    status,   avatar, DOB)
 VALUES ('$firstName', '$lastName', '$middleName', '$login', '$pass'   , '$email', 'user'  , '$path', '$age');");
