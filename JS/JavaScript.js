@@ -17,7 +17,7 @@ function form_date(){
     if (id_doc.trim() == '') {
        alert("Выберите доктора"); 
     }else{
-        ajax.open("GET","/phpProject1/php/filter.php?date="+date+"&doc_id="+id_doc+"&");
+        ajax.open("GET","../php/filter.php?date="+date+"&doc_id="+id_doc+"&");
         ajax.onreadystatechange=upd2;
         ajax.send();    
     } 
@@ -103,10 +103,37 @@ function addDataToMedBook(Path)
         xmlhttp.open("GET","WriteOnFile.php?Path="+encodeURIComponent(Path)+"&Text="+encodeURIComponent(Text),true);
         xmlhttp.send();
     }
-    location.reload();
+    setTimeout(function(){location.reload()},75);
 }
 
 function openMedicalBook(PatientId)
 {
     open("Medical_book.php?id="+PatientId);
+}
+
+function updatePlurographi(id)
+{
+    var curDate = new Date();
+    dateText=curDate.getFullYear()+'-';
+    if(curDate.getMonth()<10){ dateText+='0';}
+    dateText+=curDate.getMonth()+'-';
+    if(curDate.getDate()<10){ dateText+='0';}
+    dateText+=curDate.getDate();
+
+    var calendar = document.getElementById("calendar");
+    if(calendar.innerHTML.length==0)
+    {
+        calendar.innerHTML="<input id=\"date\" type=\"date\" value=\""+dateText+"\"></input>";
+    }
+    else
+    {
+        var date= document.getElementById("date");
+        {if (window.XMLHttpRequest) 
+            { xmlhttp = new XMLHttpRequest();} 
+            else {xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");}
+            xmlhttp.open("GET","SetPlurography.php?ID="+encodeURIComponent(id)+"&date="+encodeURIComponent(date.value),true);
+            xmlhttp.send();
+        }
+     setTimeout(function(){location.reload()},75);
+    }
 }
