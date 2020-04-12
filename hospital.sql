@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 11 2020 г., 21:47
--- Версия сервера: 10.4.11-MariaDB
--- Версия PHP: 7.4.3
+-- Время создания: Апр 13 2020 г., 01:32
+-- Версия сервера: 10.1.38-MariaDB
+-- Версия PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -110,6 +110,17 @@ INSERT INTO doctors(id,Specialization,cabinet) VALUES (uid,spec,cab);
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_acc` (IN `id` INT)  NO SQL
+BEGIN
+DECLARE uid INT;
+SET foreign_key_checks = 0;
+DELETE FROM users WHERE users.id=id;
+DELETE FROM doctors WHERE doctors.id=id;
+DELETE FROM schedules WHERE schedules.iddoctor=id;
+UPDATE schedules SET schedules.idpatient=NULL WHERE schedules.idpatient=id;
+SET foreign_key_checks = 1;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -120,8 +131,8 @@ DELIMITER ;
 
 CREATE TABLE `doctors` (
   `id` int(11) DEFAULT NULL,
-  `Specialization` text DEFAULT NULL,
-  `cabinet` text DEFAULT NULL
+  `Specialization` text,
+  `cabinet` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -139,8 +150,8 @@ INSERT INTO `doctors` (`id`, `Specialization`, `cabinet`) VALUES
 
 CREATE TABLE `patient` (
   `id` int(11) DEFAULT NULL,
-  `FilePath` text DEFAULT NULL,
-  `Plurography` text DEFAULT NULL
+  `FilePath` text,
+  `Plurography` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1034,13 +1045,13 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `login` text COLLATE utf8_unicode_ci NOT NULL,
   `password` text COLLATE utf8_unicode_ci NOT NULL,
-  `first_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `middle_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` text COLLATE utf8_unicode_ci,
+  `middle_name` text COLLATE utf8_unicode_ci,
+  `last_name` text COLLATE utf8_unicode_ci,
   `DOB` date DEFAULT NULL,
   `email` text COLLATE utf8_unicode_ci NOT NULL,
-  `status` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `avatar` text COLLATE utf8_unicode_ci DEFAULT NULL
+  `status` text COLLATE utf8_unicode_ci,
+  `avatar` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
