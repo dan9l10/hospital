@@ -1,9 +1,9 @@
 const ajax = new XMLHttpRequest();
 
 function show(){
-   // form_date();
+   
     var variable = document.getElementById("select1").value;
-    ajax.open("GET","/phpProject1/php/filter.php?id=" + variable+"&");
+    ajax.open("GET","../hospital/php/filter.php?id=" + variable+"&");
     ajax.onreadystatechange=upd;
     ajax.send();
 }
@@ -17,7 +17,7 @@ function form_date(){
     if (id_doc.trim() == '') {
        alert("Выберите доктора"); 
     }else{
-        ajax.open("GET","/phpProject1/php/filter.php?date="+date+"&doc_id="+id_doc+"&");
+        ajax.open("GET","../php/filter.php?date="+date+"&doc_id="+id_doc+"&");
         ajax.onreadystatechange=upd2;
         ajax.send();    
     } 

@@ -1,0 +1,16 @@
+#change_info{
+    display: flex;
+}
+#delete_acc{
+    display: flex;
+}
+#change_rec{
+    display: flex;
+}
+#form{
+    margin-top: 20px;
+}
+p{
+    margin: 0;
+}
+

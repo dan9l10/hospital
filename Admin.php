@@ -21,8 +21,7 @@ $result=$result->fetchAll();
         <header>
                 <a href="#">Home</a>
                 <a href="admin/reg_doctor.php">Регистрация врачей</a>
-                <a href="#">Records</a>
-                <a href="#">History</a>
+                <a href="admin/panel_admin.php">Admin panel</a>
                 <a href="php/exit.php">Exit</a>  
         </header>
       <img class="photo" src="<?= $_SESSION['admin']['avatar']?>" alt="" width="300px" height="300px">
@@ -37,7 +36,7 @@ $result=$result->fetchAll();
             </select>
             <select name="select" id="select" style="width: 300px;">
             </select>
-            <button type="submit">Информация</button>
+            <button type="submit">�?нформация</button>
         </form>
             <?php
             if(isset($_SESSION['inf'])){
