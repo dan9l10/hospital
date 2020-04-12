@@ -49,8 +49,8 @@ $file = fopen($result[3], 'rt');
         <div id="body" align="middle " style="margin:auto;margin-top:1%;width:80%">
                 <?php
                 $AvatarPic="";
-                if (file_exists(($result[6])))
-                {$AvatarPic=$result[6];}
+                if (file_exists(($result['Avatar'])))
+                {$AvatarPic=$result['Avatar'];}
                 else
                 {$AvatarPic="src/defaultUserPicture.jpg";}
                 
@@ -62,8 +62,9 @@ $file = fopen($result[3], 'rt');
                         <p style=\"margin:0.5%;\"><b >ФИО:</b>   $result[first_name] $result[middle_name] $result[last_name] </p>
                         <p style=\"margin:0.5%;\"><b>Дата рождения</b>   $result[DOB]  </p>
                         <p style=\"margin:0.5%;\"><b>Email:</b>   $result[Email] </p>
-                        <p style=\"margin:0.5%;\"><b>Флюрография:</b>   $result[Plurography] <button  onclick=\"\">Обновить данные</button></p> 
-                        </div>
+                        <p style=\"margin:0.5%;\"><b>Флюрография:</b><b id=\"Plurography\"></b>$result[Plurography]<div id=\"calendar\"></div>
+                        <button  onclick=\"javascript:updatePlurographi($id)\" >Обновить данные</button></p> 
+                             </div>
                     ");
                 ?>
                 <div align="right">
