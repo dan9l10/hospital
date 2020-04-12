@@ -1,16 +1,25 @@
 #change_info{
+    margin-right: 5px;
     display: flex;
 }
 #delete_acc{
+    margin-right: 5px;
+    margin-top: 5px; 
     display: flex;
 }
 #change_rec{
+    margin-right: 5px;
+    margin-top: 5px; 
     display: flex;
 }
 #form{
     margin-top: 20px;
 }
 p{
-    margin: 0;
+    margin-top:  0;
+    margin-bottom: 0;
+    margin-right: 5px;
 }
-
+#forms{
+    margin-top: 20px;
+}

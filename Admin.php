@@ -25,18 +25,17 @@ $result=$result->fetchAll();
                 <a href="php/exit.php">Exit</a>  
         </header>
       <img class="photo" src="<?= $_SESSION['admin']['avatar']?>" alt="" width="300px" height="300px">
-        <p><b><?= $_SESSION['admin']["first_name"]?></b></p>
-        <p><b><?= $_SESSION['admin']["last_name"]?></b></p>
-        <p><b><?= $_SESSION['admin']["middle_name"]?></b></p>
+        
+        <span id="name"><b><?= $_SESSION['admin']["first_name"]?> <?= $_SESSION['admin']["last_name"]?> <?=$_SESSION['admin']["middle_name"]?></b></span>
         <form method="POST" action="php/gen_page.php" >
-            <select name="select1" id="select1" onchange="show()">
-            <?php foreach($result as $res): ?>
-            <option value="<?=$res['Specialization'];?>"><?=$res['Specialization'];?></option>
-            <?php endforeach; ?>
+            <!--<select name="select1" id="select1" onchange="show()">-->
+            <?php // foreach($result as $res): ?>
+            <!--<option value="<?=$res['Specialization'];?>"><?=$res['Specialization'];?></option>-->
+            <?php // endforeach; ?>
+            <!--</select>-->
+<!--            <select name="select" id="select" style="width: 300px;">
             </select>
-            <select name="select" id="select" style="width: 300px;">
-            </select>
-            <button type="submit">�?нформация</button>
+            <button type="submit">�?нформация</button>-->
         </form>
             <?php
             if(isset($_SESSION['inf'])){
