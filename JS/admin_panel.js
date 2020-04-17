@@ -50,7 +50,7 @@ function update(){
         }
     }
     xhr.send("id="+id+"&login="+login+"&pass="+password+"&email="+email);
-    //alert(id);
+    alert("Data update");
 }
 }
 

@@ -4,7 +4,16 @@ if(!isset($_SESSION['usr'])){
     header('Location: index.php') ;
 }
 include 'php/connect.php';
+$id=$_SESSION['usr']['id'];
+$file = $dbh->prepare("select patient.filepath from patient INNER JOIN users ON users.id=patient.id where users.id=$id");
+$file->execute();
+$file=$file->fetchAll(PDO::FETCH_ASSOC);
+foreach ($file as $row){
+    $_SESSION['usr']['path']=$row['filepath'];
+}
 
+//print_r($file);
+//exit();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,19 +21,14 @@ include 'php/connect.php';
         <meta charset="UTF-8">
         <title>Hospital</title>
         <link rel="stylesheet" type="text/css" href="style/profile.css" >
-        <style>
-          
-        </style>
     </head>
     <body>
         <header id="header">
-            
                 <a href="#">Домашняя</a>
                 <a href="usr/showDoc.php">Врачи</a>
                 <a href="usr/reg_to_doc.php">Запись</a>
                 <a href="usr/records.php">История</a>
-                <a href="php/exit.php">Exit</a>
-                        
+                <a href="php/exit.php">Exit</a>       
         </header>
         <div id="full_information">
         <div id="info">
@@ -44,7 +48,16 @@ include 'php/connect.php';
             <p><b>Bio:</b></p>
         </div>
         </div>
-            
+        <br>
+        <h1>Медицинская книга</h1>
+             <?php 
+             if(isset($_SESSION['usr']['path'])&&!empty($_SESSION['usr']['path'])):
+                 if(file_exists($_SESSION['usr']['path'])):
+             $arr=file($_SESSION['usr']['path']);?>
+             <textarea style="margin:auto; margin-bottom:1%; width:99%;resize: none; height: 500px;">
+             <?php echo implode ("",$arr);?>
+             </textarea>
+             <?php endif; endif;?>
         
        
     </body>
