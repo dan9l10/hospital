@@ -43,7 +43,7 @@ $result2=$result2->fetchAll();
             <select name="timetable" id="time">
                 <option value="0">Choice</option>
                 <?php foreach($result2 as $res): ?>
-                <option value="//<?=$res['idtime'];?>"><?=$res['thetime'];?></option>
+                <option value="<?=$res['idtime'];?>"><?=$res['thetime'];?></option>
                 <?php endforeach; ?>
             </select>
              <label>Выберите дату</label>

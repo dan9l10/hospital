@@ -1,4 +1,5 @@
 const xhr = new XMLHttpRequest();
+
 function change_info(){
    let change = document.getElementById("form");
    change.innerHTML='<label>Логин</label><br>'+
@@ -80,6 +81,60 @@ function realise_del(){
     xhr.send("id="+id_account);
     //alert(id_account);
     
+}
+
+ function change_rec()
+{
+    var curDate = new Date();
+    dateText=curDate.getFullYear()+'-';
+    if(curDate.getMonth()<10){ dateText+='0';}
+    dateText+=(curDate.getMonth()+1)+'-';
+    if(curDate.getDate()<10){ dateText+='0';}
+    dateText+=curDate.getDate();
+    clear();   
+    xhr.open("POST","php/ajax_select.php");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onload = function()
+    {
+        if(xhr.status===200)
+        {
+            let res = JSON.parse(xhr.response);
+            let out = "";
+            for(let i in res)
+            {out += '<option value="'+res[i].id+'">'+res[i].login+"</option>";}
+            let change = document.getElementById("output");
+            change.innerHTML="<br><select id='select' onchange='load_schedules()'>"+out+"</select>"+
+            '<br><br><input id=\'date\' type="date" value='+dateText+' onchange=\'load_schedules()\'></input>';;
+        }
+    }
+    xhr.send();
+}
+
+function load_schedules()
+{
+    let date = document.getElementById('date').value;
+    let id = document.getElementById('select').value;
+    clear();
+    xhr.open("POST","php/ajax_select_schedules.php");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onload = function()
+    {
+        if(xhr.status===200)
+        {document.getElementById('form').innerHTML=xhr.responseText;}
+    }
+     xhr.send('date='+date+'&id='+id);
+}
+
+function onOffSmen(date,time,doctor)
+{
+    let id = document.getElementById('select').value;
+    xhr.open("POST","php/onOffSmen.php");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onloadstart= function()
+    {document.getElementById(time).innerHTML="<span>загрузка</span>";}
+    xhr.onload = function()
+    {if(xhr.status===200){document.getElementById('date').onchange();}}
+     xhr.send('date='+date+'&id='+id+'&time='+time);
 }
 
 ////BEGIN

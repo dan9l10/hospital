@@ -116,7 +116,7 @@ function updatePlurographi(id)
     var curDate = new Date();
     dateText=curDate.getFullYear()+'-';
     if(curDate.getMonth()<10){ dateText+='0';}
-    dateText+=curDate.getMonth()+'-';
+    dateText+=(curDate.getMonth()+1)+'-';
     if(curDate.getDate()<10){ dateText+='0';}
     dateText+=curDate.getDate();
 
@@ -137,3 +137,5 @@ function updatePlurographi(id)
      setTimeout(function(){location.reload()},75);
     }
 }
+
+

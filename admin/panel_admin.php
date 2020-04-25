@@ -34,7 +34,7 @@ if(!isset($_SESSION['admin'])){
         </div>
         <div id="change_rec">
             <p>Редактировние записи</p>
-            <input type="checkbox" onchange="">
+            <input type="checkbox" onchange="change_rec()">
         </div>
         <div id="output">
             <p id="text">
