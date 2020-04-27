@@ -16,7 +16,7 @@ foreach($sql as $res2){
 $date=$_REQUEST['date'];
 $id_doc=$_REQUEST['doc_id'];
 
-$sql2=$dbh->prepare("select timetable.idtime,timetable.thetime FROM timetable INNER JOIN schedules ON timetable.idtime=schedules.thetime where status is NULL && thedate = '$date' && iddoctor=$id_doc");
+$sql2=$dbh->prepare("select timetable.idtime,timetable.thetime FROM timetable INNER JOIN schedules ON timetable.idtime=schedules.thetime where status = 1 && thedate = '$date' && iddoctor=$id_doc");
 $sql2->execute();
 $sql2=$sql2->fetchAll();
 //print_r($sql2);

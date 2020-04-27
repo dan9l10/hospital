@@ -15,7 +15,7 @@ $newVal=1;
 $time=$rezult[0]['thetime'];
 if(($rezult[0]['status'])==1){$newVal=0;}
 $update=$dbh->prepare("UPDATE schedules 
-                    SET schedules.status=$newVal
+                    SET schedules.status=$newVal,schedules.idpatient=null
                     WHERE ((iddoctor=$id or idpatient=$id) AND (thedate='$date')
                     AND (thetime='$time'))
 ");

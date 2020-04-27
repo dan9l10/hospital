@@ -2,7 +2,13 @@ const xhr = new XMLHttpRequest();
 
 function change_info(){
    let change = document.getElementById("form");
-   change.innerHTML='<label>Логин</label><br>'+
+   let checkbox = document.getElementById("change_info_checkbox");
+   let checkbox_delete = document.getElementById("delete_acc_checkbox");
+   let checkbox_record = document.getElementById("record_checkbox");
+   checkbox_delete.checked=false;
+   checkbox_record.checked=false;
+   if (checkbox.checked){
+       change.innerHTML='<label>Логин</label><br>'+
                 '<input id="login" type="text" name="login" class="form-control" placeholder="Введите логин"><br>'+
                 '<label>Пароль</label><br>'+
                 '<input id="pass" type="password" name="password" class="form-control" placeholder="Введите пароь"><br>'+
@@ -11,7 +17,9 @@ function change_info(){
                 '<label>Аватар</label><br>'+
                 '<input id="avatar" type="file" name="avatar"><br>'+
                 '<button onclick="update()" class="btn-reg">Register</button>';
-show_select();
+       show_select();
+   }else{clear(); }
+   
 }
 
 function show_select(){
@@ -57,15 +65,24 @@ function update(){
 
 function clear(){
     let element = document.getElementById("form");
+    let change_select = document.getElementById("output");
     element.innerHTML='';
-    
+    change_select.innerHTML='';
 }
 function delete_account(){
-    show_select();
-    clear();  
     
-    let button=document.getElementById("form");
-    button.innerHTML='<button onclick="realise_del()">OK</button>';
+    clear(); 
+    let checkbox=document.getElementById("delete_acc_checkbox");
+    let checkbox_change_info = document.getElementById("change_info_checkbox");
+    let checkbox_record = document.getElementById("record_checkbox");
+    checkbox_record.checked=false;
+    checkbox_change_info.checked=false;
+    if(checkbox.checked){
+        show_select();
+        let button=document.getElementById("form");
+        button.innerHTML='<button onclick="realise_del()">OK</button>';
+    }else{clear();}
+    
 
 
 }
@@ -85,7 +102,13 @@ function realise_del(){
 
  function change_rec()
 {
-    var curDate = new Date();
+    let checkbox = document.getElementById("record_checkbox");
+    let checkbox_change_info = document.getElementById("change_info_checkbox");
+    let checkbox_del_acc = document.getElementById("delete_acc_checkbox");
+    checkbox_change_info.checked=false;
+    checkbox_del_acc.checked=false;
+    if(checkbox.checked){
+        var curDate = new Date();
     dateText=curDate.getFullYear()+'-';
     if(curDate.getMonth()<10){ dateText+='0';}
     dateText+=(curDate.getMonth()+1)+'-';
@@ -108,13 +131,15 @@ function realise_del(){
         }
     }
     xhr.send();
+    }//else{//clear();}
+    
 }
 
 function load_schedules()
 {
     let date = document.getElementById('date').value;
     let id = document.getElementById('select').value;
-    clear();
+    //clear();
     xhr.open("POST","php/ajax_select_schedules.php");
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function()
@@ -137,12 +162,3 @@ function onOffSmen(date,time,doctor)
      xhr.send('date='+date+'&id='+id+'&time='+time);
 }
 
-////BEGIN
-//DECLARE uid INT;
-//SET foreign_key_checks = 0;
-//DELETE FROM users WHERE users.id=id;
-//DELETE FROM doctors WHERE doctors.id=id;
-//DELETE FROM schedules WHERE schedules.iddoctor=id;
-//UPDATE schedules SET schedules.idpatient=NULL WHERE schedules.idpatient=id;
-//SET foreign_key_checks = 1;
-//END

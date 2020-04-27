@@ -18,7 +18,7 @@
     JOIN timetable ON (schedules.thetime=timetable.idtime) 
     LEFT JOIN users ON(users.id=schedules.idpatient) 
     LEFT JOIN patient ON (schedules.idpatient=patient.id) 
-    WHERE schedules.iddoctor=$id and thedate=\"$date\"");
+    WHERE schedules.iddoctor=$id and thedate=\"$date\" and schedules.status=1 GROUP BY schedules.thetime");
         
     if(!(is_bool($rezult)))
     {

@@ -23,7 +23,7 @@ $result2=$result2->fetchAll();
         <script src="../JS/JavaScript.js"></script>
         <link rel="stylesheet" type="text/css" href="../style/profile.css" >
     </head>
-    <body>
+    <body onload="form_date()">
         
             <form method="POST" action="php/reg_doc_data.php">
             
@@ -43,12 +43,12 @@ $result2=$result2->fetchAll();
             <select name="timetable" id="time">
                 <option value="0">Choice</option>
                 <?php foreach($result2 as $res): ?>
-                <option value="<?=$res['idtime'];?>"><?=$res['thetime'];?></option>
+                <!--<option value="<?=$res['idtime'];?>"><?=$res['thetime'];?></option>-->
                 <?php endforeach; ?>
             </select>
              <label>Выберите дату</label>
             <input  id="date" onchange="form_date()" type="date" name="date" class="form-control" min="<?php echo date("Y-m-d")?>" value="<?php echo date("Y-m-d")?>">
-        <button type="submit">Информация</button>
+        <button type="submit">Запись</button>
         </form>
         <a href="../Patient.php" id="back_index">Back</a>
         <p>

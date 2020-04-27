@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <?php
 session_start();
 include('../php/connect.php');
@@ -25,16 +25,16 @@ if(!isset($_SESSION['admin'])){
         <div id="forms">
         <div id="change_info">
             <p >Редактирование информации</p>
-            <input type="checkbox" onchange="change_info()" id="change_info" >
+            <input type="checkbox" onchange="change_info()" id="change_info_checkbox" >
             
         </div>
         <div id="delete_acc">
             <p>Удаление аккаунта</p>
-            <input type="checkbox" onchange="delete_account()">
+            <input type="checkbox" onchange="delete_account()" id="delete_acc_checkbox">
         </div>
         <div id="change_rec">
             <p>Редактировние записи</p>
-            <input type="checkbox" onchange="change_rec()">
+            <input type="checkbox" onchange="change_rec()" id="record_checkbox">
         </div>
         <div id="output">
             <p id="text">

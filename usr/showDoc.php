@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+ include '../php/connect.php';
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,7 +17,7 @@
         </header>
         <div id="cards">
            <?php
-           include '../php/connect.php';
+          
             $sql="select * from `users` inner join `doctors` on (users.id=doctors.id)";
             $result=$dbh->prepare($sql);
             $result->execute();
@@ -27,7 +30,8 @@
             <img src="<?php if(empty($res['avatar'])){
                 echo $default_ava_path;
             } else {
-                echo $res['avatar'];
+                $ava=$res['avatar'];
+                echo "../$ava";
             }?>" alt="Avatar" style="width:100%">
             <div class="container">
                 <h4><b><?php echo $res['first_name'].' '.$res['last_name'].' '.$res['middle_name'];; ?></b></h4>

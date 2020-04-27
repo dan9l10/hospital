@@ -52,7 +52,7 @@ $file = fopen($result[3], 'rt');
                 if (file_exists(($result['Avatar'])))
                 {$AvatarPic=$result['Avatar'];}
                 else
-                {$AvatarPic="src/defaultUserPicture.jpg";}
+                {$AvatarPic="src/default_ava.png";}
                 
                 echo(file_exists($result[6]));
                 echo("
