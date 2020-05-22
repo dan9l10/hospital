@@ -5,6 +5,7 @@ function change_info(){
    let checkbox = document.getElementById("change_info_checkbox");
    let checkbox_delete = document.getElementById("delete_acc_checkbox");
    let checkbox_record = document.getElementById("record_checkbox");
+   document.getElementById("Graphic_checkbox").checked=false;;
    checkbox_delete.checked=false;
    checkbox_record.checked=false;
    if (checkbox.checked){
@@ -75,6 +76,7 @@ function delete_account(){
     let checkbox=document.getElementById("delete_acc_checkbox");
     let checkbox_change_info = document.getElementById("change_info_checkbox");
     let checkbox_record = document.getElementById("record_checkbox");
+    document.getElementById("Graphic_checkbox").checked=false;;
     checkbox_record.checked=false;
     checkbox_change_info.checked=false;
     if(checkbox.checked){
@@ -105,6 +107,7 @@ function realise_del(){
     let checkbox = document.getElementById("record_checkbox");
     let checkbox_change_info = document.getElementById("change_info_checkbox");
     let checkbox_del_acc = document.getElementById("delete_acc_checkbox");
+    document.getElementById("Graphic_checkbox").checked=false;;
     checkbox_change_info.checked=false;
     checkbox_del_acc.checked=false;
     if(checkbox.checked){
@@ -162,3 +165,27 @@ function onOffSmen(date,time,doctor)
      xhr.send('date='+date+'&id='+id+'&time='+time);
 }
 
+
+function Graphic()
+{
+  
+    document.getElementById("form").innerHTML='';
+    document.getElementById("output").innerHTML='';
+    document.getElementById("change_info_checkbox").checked=false;;
+    document.getElementById("record_checkbox").checked=false;;
+    document.getElementById("delete_acc_checkbox").checked=false;;
+    document.getElementById("output").innerHTML="<br><input type=\"month\" id=\"date\"></input>"+
+    "<button onclick=\"CreateGraphic()\">Сформировать</button>";
+}
+
+function CreateGraphic()
+{
+    let date = document.getElementById('date').value;
+    xhr.open("POST","php/ajax_create_Graphic.php");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onloadstart= function()
+    {document.getElementById("form").innerHTML="<span>загрузка</span>";}
+    xhr.onload = function()
+    {if(xhr.status===200){document.getElementById("form").innerHTML="<span>Выполненно</span>";}}
+     xhr.send('month='+date.substr(5)+'&year='+date.substr(0, 4));
+}

@@ -23,6 +23,11 @@ if(!isset($_SESSION['admin'])){
                 <a href="../php/exit.php">Exit</a>  
         </header>
         <div id="forms">
+     
+        <div id="Graphic">
+            <p >Формирование грфика
+            <input type="checkbox" onchange="Graphic()" id="Graphic_checkbox" ></p>
+        </div>
         <div id="change_info">
             <p >Редактирование информации</p>
             <input type="checkbox" onchange="change_info()" id="change_info_checkbox" >
